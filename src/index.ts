@@ -133,7 +133,7 @@ export class Client {
     return Client.buildResult(res, resPayload)
   }
 
-  async patch<T>(url: string, payload: T, r?: RequestInit) {
+  async patch<T, P = T>(url: string, payload: P, r?: RequestInit) {
     const res = await fetch(this.buildURI(url), {
       ...this.buildRequestInit(r),
       method: 'PATCH',
