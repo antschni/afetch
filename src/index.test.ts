@@ -65,11 +65,12 @@ describe('afetch JSON integration test', () => {
 
   describe('PATCH Request', () => {
     it('should PATCH todo with id=2', async () => {
-      const todo = { author: 'Anton' }
-      const { status, payload } = await client.patch<Todo>('2', todo)
-      expect(status).toBe(200)
+      const { status, payload } = await client.patch<Todo, PatchTodoPayload>('2', { author: 'Anton' })
+      expect(status).toBe(HttpStatusCode.OK)
       expect(payload.id).toBe(2)
-      expect(payload.title).toBe('Test')
+      expect(payload.author).toBe('Anton')
+    })
+  })
 
   describe('DELETE Request', () => {
     it('should DELETE todo with id=1', async () => {
