@@ -148,7 +148,7 @@ export class Client {
     return Client.buildResult(res, resPayload)
   }
 
-  async delete(url: string, r?: RequestInit) {
+  async delete<T = undefined>(url: string, r?: RequestInit) {
     const res = await fetch(this.buildURI(url), {
       ...this.buildRequestInit(r),
       method: 'DELETE',
@@ -158,7 +158,8 @@ export class Client {
       throw new Error(await res.text())
     }
 
-    return res
+    if (res.body === null) return Client.buildResult(res, undefined as T)
+    return Client.buildResult(res, await this.parsePayload<T>(res, this.getContentType(res.headers)))
   }
 }
 
