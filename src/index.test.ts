@@ -70,6 +70,12 @@ describe('afetch JSON integration test', () => {
       expect(status).toBe(200)
       expect(payload.id).toBe(2)
       expect(payload.title).toBe('Test')
+
+  describe('DELETE Request', () => {
+    it('should DELETE todo with id=1', async () => {
+      const { status, payload } = await client.delete('1')
+      expect(status).oneOf([HttpStatusCode.OK, HttpStatusCode.NO_CONTENT])
+      expect(payload).toStrictEqual({})
     })
   })
 })
