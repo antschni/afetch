@@ -1,0 +1,31 @@
+{
+  "name": "afetch",
+  "version": "1.0.0",
+  "description": "minimal axios-like http client for node.js and browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antschni/afetch.git"
+  },
+  "keywords": [
+    "http client",
+    "node.js",
+    "browser",
+    "fetch",
+    "axios"
+  ],
+  "author": "Anton Schnitzer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antschni/afetch/issues"
+  },
+  "homepage": "https://github.com/antschni/afetch#readme",
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}
