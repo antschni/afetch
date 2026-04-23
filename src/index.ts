@@ -28,7 +28,7 @@ export class Client {
 
   // buildURI builds the URI for the request and appends the baseUrl if set
   private buildURI(url: string) {
-    return this.config?.baseUrl ? encodeURI(this.config.baseUrl.href + url) : url
+    return this.config?.baseUrl ? new URL(url, this.config.baseUrl).href : url
   }
 
   // buildRequestInit builds the RequestInit object, merging the default config with the provided one
