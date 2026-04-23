@@ -1,5 +1,5 @@
 export type ClientConfig = {
-  headers?: Headers
+  headers?: HeadersInit
   baseUrl?: URL
   timeout?: number
   credentials?: RequestCredentials
@@ -20,7 +20,7 @@ const contentTypeJSON = 'application/json' as const
 const contentTypeXML = 'application/xml' as const
 
 export class Client {
-  private readonly config?: ClientConfig
+  private config?: ClientConfig
 
   constructor(config?: ClientConfig) {
     this.config = config
@@ -48,8 +48,14 @@ export class Client {
   }
 
   private getContentType(headers?: HeadersInit) {
-    const contentType = new Headers(headers).get('content-type') ?? this.config?.headers?.get('content-type')
-    return Client.parseContentType(contentType ?? contentTypeJSON)
+    let h: Headers | undefined
+    if (headers) {
+      h = new Headers(headers)
+    } else if (this.config?.headers) {
+      h = new Headers(this.config.headers)
+    }
+
+    return Client.parseContentType(h?.get('Content-Type') ?? contentTypeJSON)
   }
 
   private stringifyPayload<T>(payload: T, contentType: string) {
@@ -79,10 +85,11 @@ export class Client {
   }
 
   private static buildResult<T>(res: Response, payload: T): Result<T> {
-    return {
-      ...res,
-      payload,
-    }
+    return Object.assign(res, { payload })
+  }
+
+  setConfig(configBuilder: (current?: ClientConfig) => ClientConfig) {
+    this.config = configBuilder(this.config ?? {})
   }
 
   // get makes a GET request to the provided url and returns a result containing the payload as T and the response.
