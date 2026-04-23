@@ -1,19 +1,19 @@
 {
-  "posts": [
+  "todos": [
     {
       "id": 1,
       "title": "Hello",
-      "author": "World"
+      "description": "World"
     },
     {
       "id": 2,
       "title": "Hallo",
-      "author": "Welt"
+      "description": "Welt"
     },
     {
       "id": 3,
       "title": "Ciao",
-      "author": "Mundo"
+      "description": "Mundo"
     }
   ]
 }
