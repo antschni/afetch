@@ -9,6 +9,11 @@
       "id": 2,
       "title": "Hallo",
       "author": "Welt"
+    },
+    {
+      "id": 3,
+      "title": "Ciao",
+      "author": "Mundo"
     }
   ]
 }
