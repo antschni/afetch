@@ -1,2 +1,2 @@
 # afetch
-minimal http/3 client for node.js and browser
+minimal axios-like http client for node.js and browser
