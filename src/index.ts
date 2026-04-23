@@ -1,3 +1,5 @@
+export * from './HttpStatusCode'
+
 export type ClientConfig = {
   headers?: HeadersInit
   baseUrl?: URL

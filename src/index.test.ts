@@ -1,5 +1,4 @@
-import afetch, { Client } from './index'
-import HttpStatusCode from './HttpStatusCode'
+import afetch, { Client, HttpStatusCode } from './index'
 import { describe, it, expect, beforeEach } from 'vitest'
 
 type Todo = {
