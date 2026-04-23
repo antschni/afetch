@@ -118,7 +118,7 @@ export class Client {
     return Client.buildResult(res, resPayload)
   }
 
-  async put<T>(url: string, payload: T, r?: RequestInit) {
+  async put<T, P = T>(url: string, payload: P, r?: RequestInit) {
     const res = await fetch(this.buildURI(url), {
       ...this.buildRequestInit(r),
       method: 'PUT',
