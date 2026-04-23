@@ -1,4 +1,5 @@
 import afetch, { Client } from './index'
+import HttpStatusCode from './HttpStatusCode'
 import { describe, it, expect, beforeEach } from 'vitest'
 
 type Todo = {
@@ -7,7 +8,7 @@ type Todo = {
   author: string
 }
 
-type PutTodoPayload = Omit<Todo, 'id' | 'title'>
+type PatchTodoPayload = Omit<Todo, 'id' | 'title'>
 
 describe('afetch JSON integration test', () => {
   let client: Client
@@ -29,14 +30,14 @@ describe('afetch JSON integration test', () => {
   describe('GET Request', () => {
     it('should GET todo id=1 by id', async () => {
       const { status, payload } = await client.get<Todo>('1')
-      expect(status).toBe(200)
+      expect(status).toBe(HttpStatusCode.OK)
       expect(payload.id).toBe(1)
       expect(payload.title).toBe('Hello')
     })
 
     it('should GET all todos', async () => {
       const { status, payload } = await client.get<Todo[]>('')
-      expect(status).toBe(200)
+      expect(status).toBe(HttpStatusCode.OK)
       expect(payload.length).toBe(3)
       expect(payload[1].id).toBe(2)
       expect(payload[2].title).toBe('Ciao')
@@ -47,7 +48,7 @@ describe('afetch JSON integration test', () => {
     it('should POST todo with id=4', async () => {
       const todo: Todo = { id: 4, title: 'Test', author: 'Anton' }
       const { status, payload } = await client.post<Todo>('', todo)
-      expect(status).toBe(201)
+      expect(status).toBe(HttpStatusCode.CREATED)
       expect(payload.id).toBe(4)
       expect(payload.title).toBe('Test')
     })
@@ -57,7 +58,7 @@ describe('afetch JSON integration test', () => {
     it('should PUT todo with id=3', async () => {
       const todo: Todo = { id: 3, title: 'Test', author: 'Anton' }
       const { status, payload } = await client.put<Todo>('3', todo)
-      expect(status).toBe(200)
+      expect(status).toBe(HttpStatusCode.OK)
       expect(payload.id).toBe(3)
       expect(payload.title).toBe('Test')
     })
