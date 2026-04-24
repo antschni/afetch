@@ -3,7 +3,7 @@ src/
 tsconfig.json
 
 # Tests & Tooling
-tests/
+*.test.ts
 spec/
 .github/
 .vscode/
@@ -13,6 +13,7 @@ jest.config.js
 
 # Docs & Assets
 examples/
+build/
 
 # Logs & Cache
 *.log

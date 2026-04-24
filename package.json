@@ -1,16 +1,20 @@
 {
-  "name": "afetch",
+  "name": "@antschni/afetch",
   "version": "1.0.0",
   "description": "minimal axios-like http client for node.js and browser",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "pack": "npm pack --pack-destination ./build",
+    "build": "tsup src/index.ts --format cjs,esm --out-dir ./dist --tsconfig tsconfig.json --dts --clean",
+    "prepack": "npm run build",
+    "publish": "npm publish --access public"
   },
   "files": [
-    "dist/",
-    "bin/",
-    "index.js",
-    "HttpStatusCode.js"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -24,7 +28,7 @@
     "axios"
   ],
   "author": "Anton Schnitzer",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/antschni/afetch/issues"
   },

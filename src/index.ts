@@ -1,4 +1,4 @@
-export * from './HttpStatusCode'
+export * from './HttpStatusCode.js'
 
 export type ClientConfig = {
   headers?: HeadersInit
